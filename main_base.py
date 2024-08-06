@@ -390,7 +390,6 @@ if __name__ == "__main__":
         args.tracker_bz = 50
     data_info = args.dataset
     ### load data
-    # trn_ds, val_ds, test_ds, train_dataloader, valid_dataloader, test_dataloader, all_dataloader = load_data(args)
     trn_ds, val_ds, test_ds, all_ds = load_data(args)
     ### make logger
     writer = None
@@ -403,36 +402,27 @@ if __name__ == "__main__":
 
     if args.dataset == 'compas':
         args.train_batch_size = 1024
-        # args.alpha = 1
         args.hidden_dim = 32
         args.layer = 2
         args.projection = 50
-        args.epochs = 6000
     elif args.dataset == 'celebatab':
         args.train_batch_size = 4096
-        # args.alpha = 1
         args.hidden_dim = 32
         args.layer = 2
         args.projection = 50
-        args.epochs = 5000
     elif args.dataset == 'mnistinvert':
         args.train_batch_size = 4096
-        # args.alpha = 5.0
         args.hidden_dim = 128
         args.layer = 1
         args.projection = 50
-        args.epochs = 3000
     elif args.dataset == 'mnistandusps':
         args.train_batch_size = 5000
-        # args.alpha = 5.0
         args.hidden_dim = 128
         args.layer = 2
         args.projection = 50
-        args.epochs = 5000
     else:
         raise NotImplementedError
     print(args)
-    # for seed in [40, 41, 42]:
     for seed in [args.seed]:
         set_seed(seed)
         # args.seed = seed
